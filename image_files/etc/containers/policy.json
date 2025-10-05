@@ -10,7 +10,8 @@
                         "type": "matchRepository"
                     }
                 }
-            ]
+            ],
+            "": [{"type": "insecureAcceptAnything"}]
         },
         "dir": {
             "": [{"type": "insecureAcceptAnything"}]
