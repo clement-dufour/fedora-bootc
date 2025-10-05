@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "quay.io/fedora/fedora-bootc"
+      ],
+      "matchUpdateTypes": [
+        "digest"
+      ],
+      "automerge": true
+    }
+  ]
+}
