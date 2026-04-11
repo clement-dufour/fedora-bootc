@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-bootc:43@sha256:b3c52385d22232719521b8e73374605610219465234f83de5207e5cfe90a521e
+FROM quay.io/fedora/fedora-bootc:43@sha256:b60271645aacea966f28de8180cb4c71c14479c7d5344c21e0bfc332f3e68e0a
 COPY image_files /
 
 RUN \
