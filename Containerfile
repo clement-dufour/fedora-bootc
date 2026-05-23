@@ -2,6 +2,10 @@ FROM quay.io/fedora/fedora-bootc:44@sha256:c8977057ee338afcc1081a48307003683f678
 COPY image_files /
 
 RUN \
+    sed -i "s/enabled=1/enabled=0/" \
+        /etc/yum.repos.d/fedora-updates-archive.repo \
+        /etc/yum.repos.d/fedora-cisco-openh264.repo \
+    && \
     dnf install --assumeyes \
         qemu-guest-agent \
     && \
