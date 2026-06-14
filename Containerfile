@@ -2,7 +2,7 @@ FROM quay.io/fedora/fedora-bootc:44@sha256:878d26220513c7ca07b9a959d20faf2652586
 COPY image_files /
 
 RUN \
-    sed -i "s/enabled=1/enabled=0/" \
+    sed -i "/enabled=/s/1/0/" \
         /etc/yum.repos.d/fedora-updates-archive.repo \
         /etc/yum.repos.d/fedora-cisco-openh264.repo \
     && \
