@@ -1,0 +1,12 @@
+[Unit]
+Description=Add host ssh key fingerprint to issue file
+Before=getty.target
+After=sshd-keygen.target
+ConditionPathIsDirectory=%t/issue.d
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/issue-add-ssh-keys
+
+[Install]
+WantedBy=multi-user.target

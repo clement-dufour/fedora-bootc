@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+issue_file="/run/issue.d/60-ssh_host_keys.issue"
+
+printf '\n' > "${issue_file}"
+
+for key in /etc/ssh/ssh_host_*_key ; do
+    ssh-keygen -l -f "${key}";
+done | awk '{print $4 " " $2}' >> "${issue_file}"
+
+printf '\n' >> "${issue_file}"
