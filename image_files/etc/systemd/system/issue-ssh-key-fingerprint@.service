@@ -1,0 +1,13 @@
+[Unit]
+Description=Add %i OpenSSH Server Key Fingerprint to agetty Issue
+Before=getty.target
+After=sshd-keygen.target
+ConditionFileNotEmpty=%E/ssh/ssh_host_%i_key
+ConditionPathIsDirectory=%t/issue.d
+
+[Service]
+Type=oneshot
+ExecStart=sh -c 'ssh-keygen -l -f %E/ssh/ssh_host_%i_key | awk "{print \\$4 \\" \\" \\$2}" | tee %t/issue.d/ssh_host_%i_key.issue'
+
+[Install]
+WantedBy=multi-user.target
