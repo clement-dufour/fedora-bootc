@@ -10,6 +10,7 @@ RUN \
         qemu-guest-agent \
     && \
     dnf install --assumeyes \
+        systemd-container \
         vim \
     && \
     dnf clean all && \
