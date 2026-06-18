@@ -18,6 +18,10 @@ on:
       - '!.github/**'
       - '.github/workflows/build.yml'
   workflow_dispatch:
+  schedule:
+    # Build every day at 2:00 PM
+    # fedora-bootc image is built around 1:30 PM
+    - cron: '0 14 * * *'
 
 env:
     IMAGE_NAME: ${{ github.event.repository.name }}
