@@ -23,4 +23,6 @@ dnf install --assumeyes \
 dnf clean all
 
 systemctl preset-all
+
+ostree container commit
 EOF
