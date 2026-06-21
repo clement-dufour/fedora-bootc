@@ -52,6 +52,16 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
+      - name: change containers signature policy
+        shell: bash --noprofile --norc -e -o nounset -o pipefail {0}
+        run: |
+          mkdir -p "${HOME}/.config/containers/registries.d"
+
+          cat << EOF > "${HOME}/.config/containers/registries.d/default-docker.yaml"
+          default-docker:
+            use-sigstore-attachments: true
+          EOF
+
       - name: build
         id: build
         shell: bash --noprofile --norc -e -o nounset -o pipefail {0}
