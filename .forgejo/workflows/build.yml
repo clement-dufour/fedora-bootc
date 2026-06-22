@@ -1,15 +1,6 @@
 name: build image
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - '**'
-      - '!**/README.md'
-      - '!**/README.org'
-      - '!**/renovate.json'
-      - '!.forgejo/**'
-      - '.forgejo/workflows/build.yml'
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -19,12 +10,19 @@ on:
       - '!**/README.org'
       - '!**/renovate.json'
       - '!.forgejo/**'
-      - '.forgejo/workflows/build.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**'
+      - '!**/README.md'
+      - '!**/README.org'
+      - '!**/renovate.json'
+      - '!.forgejo/**'
   schedule:
     # Build every day at 2:00 PM
     # fedora-bootc image is built around 1:30 PM
     - cron: '0 14 * * *'
-  workflow_dispatch:
 
 env:
   REGISTRY: forgejo.clmnt.xyz
