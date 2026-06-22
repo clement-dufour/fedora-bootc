@@ -9,6 +9,15 @@
         "quay.io/fedora/fedora-bootc"
       ],
       "pinDigests": false
+    },
+    {
+      "matchPackageNames": [
+        "quay.io/fedora/fedora-bootc"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "dependencyDashboardApproval": true
     }
   ]
 }
