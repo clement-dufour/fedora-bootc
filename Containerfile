@@ -10,12 +10,12 @@ sed -i "/enabled=/s/1/0/" \
     /etc/yum.repos.d/fedora-cisco-openh264.repo \
 
 
-dnf install --assumeyes \
+dnf --assumeyes --setopt=install_weak_deps=False install \
     qemu-guest-agent \
 
 
-dnf install --assumeyes \
     git \
+dnf --assumeyes --setopt=install_weak_deps=False install \
     systemd-container \
     vim \
 
