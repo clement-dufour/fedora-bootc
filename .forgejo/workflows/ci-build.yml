@@ -1,0 +1,45 @@
+name: ci-build
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+      - 'renovate/**'
+    paths:
+      - '**'
+      - '!**/README.md'
+      - '!**/README.org'
+      - '!**/renovate.json'
+      - '!.forgejo/**'
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - '**'
+      - '!**/README.md'
+      - '!**/README.org'
+      - '!**/renovate.json'
+      - '!.forgejo/**'
+  schedule:
+    # Build every day at 2:00 PM
+    # fedora-bootc image is built around 1:30 PM
+    - cron: '0 14 * * *'
+
+concurrency:
+  group: ${{ forgejo.workflow }}-${{ forgejo.ref || forgejo.run_id }}
+  cancel-in-progress: ${{ forgejo.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: build
+    runs-on: podman-builder
+    uses: clmnt/container-images/.forgejo/workflows/reusable-build.yml@main
+
+    with:
+      registry: 'forgejo.clmnt.xyz'
+      repository: ${{ forgejo.repository }}
+      tags: ${{ forgejo.sha }} latest
+    secrets:
+      registry-user: ${{ forgejo.actor }}
+      registry-password: ${{ secrets.TOKEN_PACKAGES_RW }}
+      sigstore-private-key: ${{ secrets.COSIGN_PRIVATE_KEY }}
