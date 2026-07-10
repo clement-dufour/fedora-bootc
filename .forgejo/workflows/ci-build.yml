@@ -24,6 +24,7 @@ on:
     # Build every day at 2:00 PM
     # fedora-bootc image is built around 1:30 PM
     - cron: '0 14 * * *'
+      timezone: Europe/Paris
 
 concurrency:
   group: ${{ forgejo.workflow }}-${{ forgejo.ref || forgejo.run_id }}
@@ -36,9 +37,9 @@ jobs:
     uses: clmnt/container-images/.forgejo/workflows/reusable-build.yml@main
 
     with:
-      registry: 'forgejo.clmnt.xyz'
-      repository: ${{ forgejo.repository }}
-      tags: ${{ forgejo.sha }} latest
+      image-names: |
+        forgejo.clmnt.xyz/${{ forgejo.repository }}:${{ forgejo.sha }}
+        forgejo.clmnt.xyz/${{ forgejo.repository }}:latest
     secrets:
       registry-user: ${{ forgejo.actor }}
       registry-password: ${{ secrets.TOKEN_PACKAGES_RW }}
