@@ -2,24 +2,12 @@ name: ci-build
 on:
   workflow_dispatch:
   push:
-    branches:
-      - 'main'
-      - 'renovate/**'
     paths:
       - '**'
-      - '!**/README.md'
-      - '!**/README.org'
-      - '!**/renovate.json'
+      - '!README.*'
+      - '!renovate.json'
       - '!.forgejo/**'
-  pull_request:
-    branches:
-      - 'main'
-    paths:
-      - '**'
-      - '!**/README.md'
-      - '!**/README.org'
-      - '!**/renovate.json'
-      - '!.forgejo/**'
+      - '.forgejo/workflows/ci-build.yml'
   schedule:
     # Build every day at 2:00 PM
     # fedora-bootc image is built around 1:30 PM
@@ -32,7 +20,6 @@ concurrency:
 
 jobs:
   build:
-    name: build
     runs-on: podman-builder
     uses: clmnt/container-images/.forgejo/workflows/reusable-build.yml@742e14b53085fc95291b2c79eb7324fd06276485 # v1.0.0
 
