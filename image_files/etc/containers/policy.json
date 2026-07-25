@@ -1,6 +1,9 @@
 {
     "default": [{"type": "reject"}],
     "transports": {
+        "containers-storage": {
+            "": [{"type": "insecureAcceptAnything"}]
+        },
         "docker": {
             "forgejo.clmnt.xyz/clmnt": [
                 {
