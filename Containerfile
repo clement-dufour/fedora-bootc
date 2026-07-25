@@ -14,12 +14,6 @@ dnf --assumeyes --setopt=install_weak_deps=False install \
     qemu-guest-agent \
 
 
-dnf --assumeyes --setopt=install_weak_deps=False install \
-    git-core \
-    systemd-container \
-    vim \
-
-
 dnf clean all
 
 systemctl preset-all
