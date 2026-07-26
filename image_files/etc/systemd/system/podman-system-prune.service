@@ -1,0 +1,6 @@
+[Unit]
+Description=Remove all unused pods, containers, images and networks
+Documentation=man:podman-system-prune(1)
+
+[Service]
+ExecStart=/usr/bin/podman system prune --force --all

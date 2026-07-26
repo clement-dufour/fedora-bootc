@@ -1,1 +1,3 @@
 enable issue-ssh-key-fingerprint@.service ed25519
+
+enable podman-system-prune.timer
